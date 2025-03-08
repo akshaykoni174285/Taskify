@@ -1,0 +1,46 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+
+# Logs
+logs/
+*.log
+
+# MongoDB files
+data/
+dump/
+*.lock
+
+# Docker files
+docker-compose.override.yml
+
+# Build files
+dist/
+build/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.idea/
+.vscode/
+*.swp
+
+# Coverage reports
+coverage/
+
+# Ignore compiled and cache files
+*.cache
+*.out
+
+# Miscellaneous
+/.eslintcache
+/.parcel-cache
