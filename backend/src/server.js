@@ -13,7 +13,7 @@ const port = process.env.PORT || 5000;
 
 // custom imports
 import MongoConnect from './config/db.js'
-import authRoutes from './controllers/authRoutes.js'
+import authRoutes from './routes/authRoutes.js'
 
 // middlewares
 MongoConnect()
@@ -26,10 +26,11 @@ app.get('/',(req, res) => {
     res.send("welcome to my new taskify project lads").status(200)
 })
 
-app.get('/api/auth',authRoutes)
+// app.get('/api/auth',authRoutes)
+app.use('/',authRoutes)
+
+
 app.listen(port,() => {
     console.log("listening on port " + port);
 })
-
-
 
