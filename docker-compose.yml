@@ -19,5 +19,5 @@ services:
     container_name: taskify-mongodb  # Name for the MongoDB container
     image: mongo
     ports:
-      - "27017:27017"
+      - "27018:27017"
     restart: unless-stopped  # Restart policy for MongoDB

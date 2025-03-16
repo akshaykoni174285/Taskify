@@ -14,7 +14,7 @@ const port = process.env.PORT || 5000;
 // custom imports
 import MongoConnect from './config/db.js'
 import authRoutes from './routes/authRoutes.js'
-
+import tasksRoutes from './routes/tasksRoutes.js'
 // middlewares
 MongoConnect()
 app.use(express.json())
@@ -28,6 +28,10 @@ app.get('/',(req, res) => {
 
 // app.get('/api/auth',authRoutes)
 app.use('/auth/api',authRoutes)
+
+app.use('/',tasksRoutes)
+
+
 
 
 app.listen(port,() => {
