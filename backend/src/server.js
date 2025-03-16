@@ -27,7 +27,7 @@ app.get('/',(req, res) => {
 })
 
 // app.get('/api/auth',authRoutes)
-app.use('/',authRoutes)
+app.use('/auth/api',authRoutes)
 
 
 app.listen(port,() => {

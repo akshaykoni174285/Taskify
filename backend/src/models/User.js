@@ -2,17 +2,17 @@ import mongoose from "mongoose";
 
 
 const userSchema = new mongoose.Schema({
-    name: {
-        type: 'string',
+    username: {
+        type: String,
         required: true
     },
     email: {
-        type: 'string',
+        type: String,
         required: true
     },
     tasks:[
         {
-            type:mongoose.Schema.Types.ObjectID,
+            type:mongoose.Schema.Types.ObjectId,
             ref:'Task'
         }
     ],
@@ -23,7 +23,6 @@ const userSchema = new mongoose.Schema({
     tokens:[
         {
             type:String,
-            required:true
         }
     ]
 });
