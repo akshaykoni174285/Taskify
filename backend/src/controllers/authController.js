@@ -8,6 +8,7 @@ export const registeruser = async (req,res)=>{
     const username = req.body.username || null;
     const email = req.body.email || null;
     const password = req.body.password || null;
+    const confirmPassword = req.body.confirmPassword || null;
 
 
     if (!username || !email || !password){
