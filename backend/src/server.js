@@ -19,6 +19,10 @@ import tasksRoutes from './routes/tasksRoutes.js'
 MongoConnect()
 app.use(express.json())
 app.use(morgan("dev"))
+app.use(cors({
+    origin:'https://localhost:3000',
+    credentials: true,
+}))
 
 // api calls 
 
