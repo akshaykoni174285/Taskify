@@ -20,8 +20,7 @@ MongoConnect()
 app.use(express.json())
 app.use(morgan("dev"))
 app.use(cors({
-    origin:'https://localhost:3000',
-    credentials: true,
+    origin:'http://localhost:3000',
 }))
 
 // api calls 
