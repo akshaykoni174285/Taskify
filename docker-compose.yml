@@ -1,23 +1,37 @@
 version: '3'
 services:
   backend:
-    container_name: taskify-backend  # Name for the backend container
+    container_name: taskify-backend
     build:
-      context: ./backend  # Ensure this is correct
+      context: ./backend
       dockerfile: Dockerfile
     volumes:
-      - ./backend:/app  # Mount backend directory correctly
+      - ./backend:/app
     ports:
       - "5000:5000"
     environment:
       - MONGO_URI=mongodb://mongodb:27017/Taskify
     depends_on:
       - mongodb
-    restart: unless-stopped  # Restart if it crashes but not on manual stop
+    restart: unless-stopped
+
+  frontend:
+    container_name: taskify-frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules  # Avoid mounting node_modules from the host
+    ports:
+      - "3000:3000"  # Assuming Next.js runs on port 3000 # Frontend talks to backend
+    depends_on:
+      - backend
+    restart: unless-stopped
 
   mongodb:
-    container_name: taskify-mongodb  # Name for the MongoDB container
+    container_name: taskify-mongodb
     image: mongo
     ports:
-      - "27018:27017"
-    restart: unless-stopped  # Restart policy for MongoDB
+      - "27017:27017"
+    restart: unless-stopped
