@@ -5,6 +5,8 @@ import mongoose from 'mongoose';
 export const addTask = async (req, res) => {
     try {
         const { title, description } = req.body;
+        console.log("Received Headers:", req.headers);
+        console.log("Received Data:", req.body);
 
         // Check if user is authenticated
         if (!req.user || !req.user.id) {
