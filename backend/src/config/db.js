@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 
 
 dotenv.config()
+const MONGO_URI = process.env.MONGO_URI || "mongodb://mongo:27017/taskify";
 
 
 export default async function(){
