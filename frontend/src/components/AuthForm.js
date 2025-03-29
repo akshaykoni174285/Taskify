@@ -53,6 +53,13 @@ export default function AuthForm({ type }){
                 setError(data.message || `${isSignup ? "signup" : "login"} has failed`);
                 return;
             }
+
+            if (data.token) {
+              localStorage.setItem("token", data.token);
+          } else {
+              console.error("No token received from server");
+          }
+      
             alert(`${isSignup ? "Signup" : "Login"} successful!`);
       router.push(isSignup ? "/auth/login" : "/dashboard");
 
