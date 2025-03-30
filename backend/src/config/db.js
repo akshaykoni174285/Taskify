@@ -3,14 +3,13 @@ import dotenv from 'dotenv';
 
 
 dotenv.config()
-const MONGO_URI = process.env.MONGO_URI || "mongodb://mongo:27017/taskify";
+const MONGO_URI = process.env.MONGO_URI;
 
 
 export default async function(){
 
     try {
-        await mongoose.connect(process.env.MONGO_URI_DEV,{
-        })
+        await mongoose.connect(process.env.MONGO_URI);
         console.log("MongoDB Connected Successfully!")
         
     } catch (error) {
