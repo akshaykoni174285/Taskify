@@ -1,17 +1,19 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Dashboard() {
+    const router = useRouter();
     const [tasks, setTasks] = useState([]);
     const [editTask, setEditTask] = useState(null);
     const [newTitle, setNewTitle] = useState("");
     const [newDescription, setNewDescription] = useState("");
 
     // Fetch tasks from the backend
-    const fetchTasks = async () => {
-        const token = localStorage.getItem("token");
+    const fetchTasks = async (token) => {
         try {
+            console.log(token)
             const res = await fetch("http://localhost:5000/tasks", {
                 method: "GET",
                 headers: { Authorization: `Bearer ${token}` }
@@ -24,7 +26,13 @@ export default function Dashboard() {
         }
     };
 
-    useEffect(() => { fetchTasks(); }, []);
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if(!token){
+            router.push('/auth/login');
+        }
+        else{
+        fetchTasks(token);} }, [router]);
 
     // Add Task
     const handleAddTask = async () => {
