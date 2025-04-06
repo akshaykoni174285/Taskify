@@ -45,3 +45,4 @@ coverage/
 # Miscellaneous
 /.eslintcache
 /.parcel-cache
+backend/.env
