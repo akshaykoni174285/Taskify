@@ -4,7 +4,6 @@ import User from '../models/User.js';
 export const registeruser = async (req,res)=>{
     
     try{
-    console.log(req.body);
     const username = req.body.username || null;
     const email = req.body.email || null;
     const password = req.body.password || null;
