@@ -11,9 +11,11 @@ export default function Dashboard() {
     const [newDescription, setNewDescription] = useState("");
 
     // Fetch tasks from the backend
-    const fetchTasks = async (token) => {
+    const fetchTasks = async () => {
+        const token = localStorage.getItem("token");
+        if (!token) return;
+        
         try {
-            console.log(token)
             const res = await fetch("http://localhost:5000/tasks", {
                 method: "GET",
                 headers: { Authorization: `Bearer ${token}` }
@@ -31,8 +33,10 @@ export default function Dashboard() {
         if(!token){
             router.push('/auth/login');
         }
-        else{
-        fetchTasks(token);} }, [router]);
+        else {
+            fetchTasks();
+        }
+    }, [router]);
 
     // Add Task
     const handleAddTask = async () => {
@@ -53,7 +57,7 @@ export default function Dashboard() {
                 body: JSON.stringify({ title, description }),
             });
             if (!res.ok) throw new Error("Failed to add task");
-            fetchTasks();
+            fetchTasks(); // Now correctly calls fetchTasks without requiring token parameter
         } catch (error) {
             console.error("Error adding task:", error);
         }
@@ -68,7 +72,7 @@ export default function Dashboard() {
                 headers: { Authorization: `Bearer ${token}` }
             });
             if (!res.ok) throw new Error("Failed to delete task");
-            fetchTasks();
+            fetchTasks(); // Now correctly calls fetchTasks without requiring token parameter
         } catch (error) {
             console.error("Error deleting task:", error);
         }
@@ -96,7 +100,7 @@ export default function Dashboard() {
                 body: JSON.stringify({ title: newTitle, description: newDescription })
             });
             if (!res.ok) throw new Error("Failed to update task");
-            fetchTasks();
+            fetchTasks(); // Now correctly calls fetchTasks without requiring token parameter
             setEditTask(null);
         } catch (error) {
             console.error("Error updating task:", error);
